@@ -6,6 +6,12 @@ class Felis < Formula
   license "Apache-2.0"
   head "https://github.com/felis-terminal/felis.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/felis-terminal/homebrew-tap/releases/download/felis-0.1.0"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "878c76054f5bcde3413d9c0a328e884971e1acd0091ff50184154901d8206db3"
+    sha256 cellar: :any,                 x86_64_linux:  "2c5cbf9d3ed4ebdce214588d507f6bc8fd87455880d918f862c9bd230b04c16c"
+  end
+
   depends_on "rust" => :build
 
   on_linux do
