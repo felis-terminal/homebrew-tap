@@ -7,9 +7,9 @@ class Felis < Formula
   head "https://github.com/felis-terminal/felis.git", branch: "main"
 
   bottle do
-    root_url "https://github.com/felis-terminal/homebrew-tap/releases/download/felis-0.1.0"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "878c76054f5bcde3413d9c0a328e884971e1acd0091ff50184154901d8206db3"
-    sha256 cellar: :any,                 x86_64_linux:  "2c5cbf9d3ed4ebdce214588d507f6bc8fd87455880d918f862c9bd230b04c16c"
+    root_url "https://github.com/felis-terminal/homebrew-tap/releases/download/felis-0.1.1"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "247996a9b7cec450a1ef91f632811a307397cdc4a890fb9f71eff3c30e007225"
+    sha256 cellar: :any,                 x86_64_linux:  "a0f2ae02b6b3780846e34353b8df9c8512ad1e83b58856a7d1f0d19258b1e1da"
   end
 
   depends_on "rust" => :build
