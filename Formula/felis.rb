@@ -1,8 +1,8 @@
 class Felis < Formula
   desc "Terminal for your toolkit, not an environment"
   homepage "https://github.com/felis-terminal/felis"
-  url "https://github.com/felis-terminal/felis/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "1c041e7ea742d9dd0f9283f2db8a5c6f9ce2cc9f9cba57972dc7ad3563625b36"
+  url "https://github.com/felis-terminal/felis/archive/refs/tags/v0.1.1.tar.gz"
+  sha256 "047d8d7f9c1267387a2334b9a7ea383c8635236753fef652fb3f3d0dba8ae91f"
   license "Apache-2.0"
   head "https://github.com/felis-terminal/felis.git", branch: "main"
 
@@ -37,12 +37,15 @@ class Felis < Formula
     client_features = OS.linux? ? %w[--features wayland-clipboard] : []
     system "cargo", "install", *client_features, *std_cargo_args(root:, path: "crates/felis-client")
 
+    system "bash", "nix/compile-terminfo.sh", "share/terminfo/felis.terminfo", share/"terminfo"
+
     release = root/"bin"
     if OS.mac?
       system "bash", "nix/make-macos-app.sh",
              "--client", release/"felis-client",
              "--daemon", release/"felis-daemon",
              "--cli", release/"felis",
+             "--terminfo", share/"terminfo",
              "--version", version.to_s,
              "--out", prefix
       felis = prefix/"felis.app/Contents/MacOS/felis"
@@ -52,7 +55,6 @@ class Felis < Formula
     end
 
     # felis-client and felis-daemon stay beside felis: each spawns the other by its own directory.
-    system "bash", "nix/compile-terminfo.sh", "share/terminfo/felis.terminfo", share/"terminfo"
     (bin/"felis").write_env_script felis,
                                    TERMINFO_DIRS: "#{opt_share}/terminfo:${TERMINFO_DIRS-}"
 
@@ -63,8 +65,8 @@ class Felis < Formula
 
   def caveats
     s = <<~EOS
-      Programs started inside felis find the xterm-felis terminfo entry through
-      TERMINFO_DIRS, which the `felis` launcher sets. To reach it elsewhere (ssh, tmux):
+      Programs started inside felis find the xterm-felis terminfo entry on their own.
+      To reach it elsewhere (ssh, tmux):
         export TERMINFO_DIRS="#{opt_share}/terminfo:${TERMINFO_DIRS-}"
     EOS
     if OS.mac?
@@ -81,6 +83,8 @@ class Felis < Formula
     assert_match version.to_s, shell_output("#{bin}/felis --version")
     # tic files the entry under x/ or 78/ depending on the ncurses build.
     refute_empty Dir[share/"terminfo/*/xterm-felis"]
+    # The daemon inside felis.app hands its sessions this copy; Finder passes no TERMINFO_DIRS.
+    refute_empty Dir[prefix/"felis.app/Contents/Resources/terminfo/*/xterm-felis"] if OS.mac?
 
     # The daemon refuses a socket directory other users can enter.
     (testpath/"run").mkpath
