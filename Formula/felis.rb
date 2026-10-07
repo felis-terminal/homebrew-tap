@@ -38,6 +38,8 @@ class Felis < Formula
     system "cargo", "install", *client_features, *std_cargo_args(root:, path: "crates/felis-client")
 
     system "bash", "nix/compile-terminfo.sh", "share/terminfo/felis.terminfo", share/"terminfo"
+    # `${commands[felis]:A:h:h}/share/felis/shell-integration/felis.zsh` in the docs resolves to this copy.
+    pkgshare.install "share/felis/shell-integration"
 
     release = root/"bin"
     if OS.mac?
@@ -83,6 +85,7 @@ class Felis < Formula
     assert_match version.to_s, shell_output("#{bin}/felis --version")
     # tic files the entry under x/ or 78/ depending on the ncurses build.
     refute_empty Dir[share/"terminfo/*/xterm-felis"]
+    assert_path_exists pkgshare/"shell-integration/felis.zsh"
     # The daemon inside felis.app hands its sessions this copy; Finder passes no TERMINFO_DIRS.
     refute_empty Dir[prefix/"felis.app/Contents/Resources/terminfo/*/xterm-felis"] if OS.mac?
 
