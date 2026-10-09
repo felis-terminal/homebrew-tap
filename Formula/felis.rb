@@ -1,8 +1,8 @@
 class Felis < Formula
   desc "Terminal for your toolkit, not an environment"
   homepage "https://github.com/felis-terminal/felis"
-  url "https://github.com/felis-terminal/felis/archive/refs/tags/v0.1.3.tar.gz"
-  sha256 "d0c9e35ef6bbc882e5502a1b3bbc823c731105c97190869d75d5324a027f3784"
+  url "https://github.com/felis-terminal/felis/archive/refs/tags/v0.1.4.tar.gz"
+  sha256 "ad6578107484d6883358448cefbd52ce79c2865b8f510409143d9e21ad38b486"
   license "Apache-2.0"
   head "https://github.com/felis-terminal/felis.git", branch: "main"
 
