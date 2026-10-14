@@ -17,6 +17,7 @@ class Felis < Formula
   on_linux do
     depends_on "ncurses" => :build
     # dlopen'd at runtime, so they appear in no DT_NEEDED entry.
+    depends_on "fontconfig"
     depends_on "libx11"
     depends_on "libxcb"
     depends_on "libxcursor"
