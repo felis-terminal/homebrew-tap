@@ -38,7 +38,7 @@ class Felis < Formula
     client_features = OS.linux? ? %w[--features wayland-clipboard] : []
     system "cargo", "install", *client_features, *std_cargo_args(root:, path: "crates/felis-client")
 
-    system "bash", "nix/compile-terminfo.sh", "share/terminfo/felis.terminfo", share/"terminfo"
+    system "bash", "nix/compile-terminfo.sh", "crates/felis-daemon/terminfo/felis.terminfo", share/"terminfo"
     # `${commands[felis]:A:h:h}/share/felis/shell-integration/felis.zsh` in the docs resolves to this copy.
     pkgshare.install "share/felis/shell-integration"
 
