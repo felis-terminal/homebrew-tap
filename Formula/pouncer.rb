@@ -6,6 +6,12 @@ class Pouncer < Formula
   license "Apache-2.0"
   head "https://github.com/felis-terminal/pouncer.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/felis-terminal/homebrew-tap/releases/download/pouncer-0.1.0"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3f60d8c6ca4b8656296c0b3fba6b06167dbdd10c040605b8e6c5c44535d230d4"
+    sha256 cellar: :any,                 x86_64_linux:  "346e1ea73e09d1db3f3267899fcd97ee13a959eaf97b2d542085280a4cd37b84"
+  end
+
   depends_on "rust" => :build
 
   def install
