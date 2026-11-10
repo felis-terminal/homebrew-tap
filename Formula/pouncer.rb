@@ -7,9 +7,9 @@ class Pouncer < Formula
   head "https://github.com/felis-terminal/pouncer.git", branch: "main"
 
   bottle do
-    root_url "https://github.com/felis-terminal/homebrew-tap/releases/download/pouncer-0.1.0"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3f60d8c6ca4b8656296c0b3fba6b06167dbdd10c040605b8e6c5c44535d230d4"
-    sha256 cellar: :any,                 x86_64_linux:  "346e1ea73e09d1db3f3267899fcd97ee13a959eaf97b2d542085280a4cd37b84"
+    root_url "https://github.com/felis-terminal/homebrew-tap/releases/download/pouncer-0.1.1"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "5ed231538f099faaacb4f943fcf9730ef917a53d6edab65de4fbe1794014cd3d"
+    sha256 cellar: :any,                 x86_64_linux:  "1f1369a4efab5b15f4489c1257160afa6f9c0118dc4ad51afbe015ce94ad3439"
   end
 
   depends_on "rust" => :build
