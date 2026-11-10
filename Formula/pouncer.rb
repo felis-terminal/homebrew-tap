@@ -1,8 +1,8 @@
 class Pouncer < Formula
   desc "Terminal-agnostic single-keystroke hint picker for scrollback"
   homepage "https://github.com/felis-terminal/pouncer"
-  url "https://github.com/felis-terminal/pouncer/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "060adc6b7e03b5b96f6d8352501a939bd49a4b6dd6abdfa76b3d4b5ed9e88945"
+  url "https://github.com/felis-terminal/pouncer/archive/refs/tags/v0.1.1.tar.gz"
+  sha256 "782c24ff8f87ed05181f0f1273e14f004f1c0934a8c736dfe764d7489fcc74d7"
   license "Apache-2.0"
   head "https://github.com/felis-terminal/pouncer.git", branch: "main"
 
